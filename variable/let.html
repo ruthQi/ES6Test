@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>let与var区别</title>
+</head>
+<body>
+   <button>按钮1</button>
+   <button>按钮2</button>
+   <button>按钮3</button>
+   <button>按钮4</button>
+   <button>按钮5</button>
+   <script>
+      /*
+         区别1：
+         let变量的作用域只局限于当前的代码块
+         var变量的作用域没有代码块的概念，在函数内，作用域为当前函数，否则为全局变量
+      */
+      {
+         var str = '张三';
+         console.log(str);
+         let str1 = '李四';
+         console.log(str1);
+      }
+      console.log(str);
+      console.log(str1);//报错：Uncaught ReferenceError: str1 is not defined
+
+      /*
+         区别2：
+         let声明的变量作用域不会被提升
+         var声明的变量作用域会被提升
+      */
+      {
+         console.log(domain1);//undefined
+         var domain1 = 'var';
+         console.log(domain2);//Uncaught ReferenceError: domain2 is not defined
+         let domain2 = 'let';
+      }
+
+      /*
+         区别3：
+         在相同的作用域下不能声明相同的变量
+         let声明相同的变量报错；
+         let声明的变量与var声明的变量相同也报错
+      */
+      {
+         var same1 = 'same-var1';
+         var same1 = 'same-var2';
+         console.log(same1);
+
+         let same1 = 'same-var3';//Uncaught SyntaxError: Identifier 'same1' has already been declared
+
+         let same2 = 'same-let1';
+         let same2 = 'same-let2';
+         console.log(same2);//Uncaught SyntaxError: Identifier 'same2' has already been declared
+      }
+
+      /*
+         区别4：
+         let的父子作用域不同
+      */
+      
+      var btns = document.querySelectorAll('button');
+      for(var i = 0; i < btns.length; i++){
+         btns[i].onclick = function(){
+            console.log(i);//5
+         }
+      }
+      //闭包实现
+      for(var i = 0; i< btns.length; i++){
+         (function(i){
+            btns[i].onclick = function(){
+               console.log('闭包：' + i);
+            }
+         })(i)
+      }
+      //改为let定义变量
+      for(let i = 0; i< btns.length;i++){
+         btns[i].onclick = function(){
+            console.log(i)
+         }
+      }
+   </script>
+</body>
+</html>
