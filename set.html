@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Set</title>
+</head>
+<body>
+   <script>
+      /*
+      1.类似于数组，没有重复的元素（唯一的）；
+      2.开发中用于去除重复数据
+      3.key和value都是相等的
+      */
+
+      //01-创建一个集合
+      let set = new Set(['张三', '李四', '王五']);//Set(3) {"张三", "李四", "王五"}
+      console.log(set);
+      //set中key和value相同
+      console.log(set.keys());
+      console.log(set.values());
+
+      //02-一个属性
+      console.log(set.size);//3
+
+      //03-四个方法
+      //1.add
+      console.log(set.add('张三'));//返回Set对象
+      set.add('啊刘','啊大');//Set(4) {"张三", "李四", "王五", "啊刘"}
+
+      set.add('啊赵').add('啊小').add('haha');//{"张三", "李四", "王五", "啊刘", "啊赵", "啊小"}
+      console.log(set)
+
+      //2.delete
+      set.delete('张三');//{"李四", "王五", "啊刘", "啊赵", "啊小"}
+
+      console.log(set.delete('李四'));//返回值：true
+      console.log(set);
+
+      //3.has
+      console.log(set.has('张三'));//返回值：false
+      console.log(set.has('王五'));//返回值：true
+
+      //4.clear
+      //set.clear();//清空Set
+      console.log(set);//Set(0) {}
+
+      console.log(set.keys());//SetIterator {"啊赵", "啊小", "haha"} 最后add的值
+   </script>
+</body>
+</html>
