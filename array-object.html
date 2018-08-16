@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>数组与对象</title>
+</head>
+<body>
+   <ul>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+   </ul>
+   <script>
+      //模板字符串
+      let content = '呵呵呵呵呵呵';
+      let html = `<html>
+                     <body>
+                        <div>
+                           <p>哈哈哈哈哈哈</p>
+                           <p class="test">${content}</p>
+                        </div>
+                     </body>
+                  </html>`
+      console.log(html)
+
+      //2.数组-Array.from()
+      /*
+      Array.from()用于将两类对象转化为数组：类似于数组的对象和可遍历的对象
+      */
+      let liList = document.querySelectorAll('li');
+      console.log(liList);//类数组对象
+      console.log(Array.isArray(liList));//false
+      console.log(Array.from(liList))
+      console.log(Array.isArray(Array.from(liList)));//true
+
+      console.log(Array.from('hello'));//["h", "e", "l", "l", "o"]
+      //3.数组-Array.of()
+      /*
+      Array.of()用于将一组值，转换为数组。
+      */
+      console.log(Array.of(1,2,3));//[1, 2, 3]
+      
+      //4.对象-key与value一致
+      let name = '张三', age = 20;
+      let person = {
+         name,
+         age
+      }
+      console.log(person);//{name: "张三", age: 20}
+
+      //5.对象-object.assign()
+      let obj1 = {name: '李四'},
+          obj2 = {age: 30},
+          obj3 = {sex: '女'},
+          obj4 = {friends: '王五'},
+          obj = {};
+      Object.assign(obj, obj1, obj2, obj3, obj4);
+      console.log(obj);//{name: "李四", age: 30, sex: "女", friends: "王五"}
+
+      //6.延展操作符
+      console.log({...person});//{name: "张三", age: 20}
+      let str = '今天天气很好！';
+      let strArr = [...str];
+      console.log(strArr);//["今", "天", "天", "气", "很", "好", "！"]
+
+      //示例题(去重)
+      let myArr = [1, 2, 10, '张三', 2, 8, 9];
+      console.log([...new Set(myArr)]);// [1, 2, 10, "张三", 8, 9]
+   </script>
+</body>
+</html>

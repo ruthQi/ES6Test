@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Symbol</title>
+</head>
+<body>
+   <script>
+      /*
+         为了解决对象属性名冲突问题；
+         Symbol表示独一无二的值；
+         对象的属性名现在可以有两种类型，一种是字符串，一种是Symbol类型
+         由Symbol生成的属性名，就是独一无二的，保证不会与其他属性名产生冲突
+      */
+
+      let str1 = Symbol();
+      let str2 = Symbol();
+
+      console.log(str1);//Symbol()
+      console.log(str2);//Symbol()
+
+      console.log(str1 === str2);//false
+
+      console.log(typeof str1);//symbol
+      console.log(typeof str2);//symbol
+
+      //2.描述
+      let str3 = Symbol('name');
+      let str4 = Symbol('name');
+
+      console.log(str3);//Symbol(name)
+      console.log(str4);//Symbol(name)
+
+      console.log(str3 === str4);//false
+
+      //3.对象属性
+
+      const obj = {};
+      obj.name = '张三';
+      obj.name = '李四';
+      console.log(obj);//{name: "李四"}
+
+      obj[Symbol('name')] = '张三';
+      obj[Symbol('name')] = '李四';
+      console.log(obj);//{name: "李四", Symbol(name): "张三", Symbol(name): "李四"}
+   </script>
+</body>
+</html>
