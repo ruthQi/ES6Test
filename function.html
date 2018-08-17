@@ -43,6 +43,70 @@
 
       console.log(sumAllES5(10,20,30));//60
       console.log(sumAllES6('张三',20,30,40));//90
+
+      //箭头函数
+      /*
+      箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象
+      箭头函数导致this总是指向函数定义生效时所在的对象;
+      实际上箭头函数并没有自己的this,导致内部的this就是外层代码块的this
+      普通函数中的this:是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件；
+      普通函数中this总是指向调用的对象，就是说this指向谁与函数声明的位置没有关系，只与调用的位置有关。
+      */
+      let obj = {};
+      function foo(){
+         console.log(this);//{}
+         let self = this;
+         setTimeout(function(){
+            console.log(self);//{}
+            console.log(this);//Window
+         }, 1000);
+      }
+
+      function foo1() {
+         setTimeout(() => {
+            console.log(this);//{}
+         }, 1000);
+      }
+      foo.call(obj);
+      foo1.call(obj);
+      foo1();//this指向Window
+
+      // function test(){
+      //    var a = 10;
+      //    foo();
+      // }
+
+      // function foo(){
+      //    console.log(this);//Window
+      //    console.log(this.a)
+      // }
+
+      // test();
+
+      function Timer(){
+         this.s1 = 0;
+         this.s2 = 0;
+         setInterval(()=>{
+            this.s1++
+         }, 1000);
+         setInterval(function(){
+            this.s2++;
+         }, 1000)
+      }
+      let timer = new Timer();
+      setTimeout(() => {
+         console.log(timer.s1);//3
+      }, 3100);
+      setTimeout(() => {
+         console.log(timer.s2);//0
+      }, 3100);
+
+      // setTimeout(function(){
+      //    console.log(timer.s1)
+      // }, 3100);
+
+      
+ 
    </script>
 </body>
 </html>
