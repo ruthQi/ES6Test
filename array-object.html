@@ -68,6 +68,11 @@
       let strArr = [...str];
       console.log(strArr);//["今", "天", "天", "气", "很", "好", "！"]
 
+      //解构 
+      let arr= ['a', 'b', 'c', 'd'];
+      let [a, ...rest] = arr;
+      console.log(rest);//["b", "c", "d"]
+
       //示例题(去重)
       let myArr = [1, 2, 10, '张三', 2, 8, 9];
       console.log([...new Set(myArr)]);// [1, 2, 10, "张三", 8, 9]
