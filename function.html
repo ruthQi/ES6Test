@@ -32,6 +32,11 @@
       
       //===========ES6================
       function sumAllES6(name, ...num1){
+         console.log(arguments)
+         console.log([...arguments]);//["张三", 20, 30, 40]
+         console.log(Array.prototype.slice.call(arguments));//["张三", 20, 30, 40]
+         console.log(Array.from(arguments));//["张三", 20, 30, 40]
+
          let result = 0;
          console.log(num1);//[20, 30, 40]
          console.log(name);//张三
