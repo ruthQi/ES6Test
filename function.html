@@ -111,7 +111,19 @@
       // }, 3100);
 
       
- 
+	  //测试
+	  let a = {a:1};
+	  function ccc(){
+	     return a;
+	  }
+	  let c = new ccc();
+	  let d = ccc();
+
+	  console.log(a==c, a==d, c==d);//都是true,指向a
+	  
+	  new function(){return []};//返回[]
+	  
+	  new function(){return false;}//返回{}
    </script>
 </body>
 </html>
